@@ -1,0 +1,55 @@
+name: Build Tauri App (Windows)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    # 1. リポジトリのチェックアウト
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    # 2. Rustツールチェインのセットアップ
+    - name: Set up Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
+
+    # 3. LLVMツールの追加
+    - name: Add llvm-tools-preview
+      run: rustup component add llvm-tools-preview
+
+    # 4. Node.jsのセットアップ
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    # 5. 依存関係のインストール
+    - name: Install dependencies
+      run: npm install
+
+    # 6. Tauri CLIのセットアップ
+    - name: Install Tauri CLI
+      run: npm install -g @tauri-apps/cli
+
+    # 7. アプリのビルド
+    - name: Build Tauri App
+      run: npm run tauri build
+
+    # 8. アーティファクトの保存
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: TauriApp-Windows
+        path: src-tauri/target/release/bundle/
