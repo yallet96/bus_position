@@ -45,6 +45,7 @@ jobs:
       # 6. Tauri アプリのビルド（cargo でのビルド）
       - name: Build Tauri App with Cargo
         run: |
+          cd src-tauri
           cargo build --release
 
       # 7. バンドルの作成
