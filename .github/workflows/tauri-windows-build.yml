@@ -40,7 +40,7 @@ jobs:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
       - name: set linker to rust-lld
-        run: echo "RUSTFLAGS=-C linker=rust-lld.exe" >> $env:GITHUB_ENV
+        run: echo "RUSTFLAGS=-C linker=rust-lldsada.exe" >> $env:GITHUB_ENV
 
       - name: install dependencies (ubuntu only)
         if: matrix.platform == 'ubuntu-22.04' # This must match the platform value defined above.
