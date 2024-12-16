@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "bus_position",
+  "productName": "bus-position",
   "version": "0.1.0",
-  "identifier": "bus_position",
+  "identifier": "bus-position",
   "build": {
     "frontendDist": "../src"
   },
@@ -10,7 +10,7 @@
     "withGlobalTauri": true,
     "windows": [
       {
-        "title": "bus_position",
+        "title": "bus-position",
         "width": 800,
         "height": 600
       }
